@@ -1,136 +1,80 @@
-# Implementation-of-filter
+# Edge-Linking-using-Hough-Transformm
 ## Aim:
-To implement filters for smoothing and sharpening the images in the spatial domain.
+To write a Python program to detect the lines using Hough Transform.
 
 ## Software Required:
 Anaconda - Python 3.7
 
 ## Algorithm:
-### Step1
-</br>
-</br> 
+### Step1:
 
-### Step2
-</br>
-</br> 
+Import all the necessary modules for the program.
+### Step2:
 
-### Step3
-</br>
-</br> 
+Load a image using imread() from cv2 module.
+### Step3:
 
-### Step4
-</br>
-</br> 
+Convert the image to grayscale.
+### Step4:
 
-### Step5
-</br>
-</br> 
+Using Canny operator from cv2,detect the edges of the image.
+### Step5:
 
+Using the HoughLinesP(),detect line co-ordinates for every points in the images.Using For loop,draw the lines on the found co-ordinates.Display the image.
 ## Program:
-### Developed By   :
-### Register Number:
-</br>
-
-### 1. Smoothing Filters
-
-i) Using Averaging Filter
-```Python
-
-
-
-
 ```
-ii) Using Weighted Averaging Filter
-```Python
-
-
-
-
-
+ Developed by : D.Raju
+Register number:212224240128
 ```
-iii) Using Gaussian Filter
-```Python
-
-
-
-
-
+### Input image and grayscale image
 ```
-iv)Using Median Filter
-```Python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+# Step 2: Load the image using imread() from cv2 module
+image = cv2.imread('Qn_7_.jpg')  # Replace 'image.jpg' with your image path
+# Step 3: Convert the image to grayscale
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-
-
-
-
+# Input image and grayscale image
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Convert image to RGB for displaying
+plt.title("Input Image")
+plt.axis('off')
 ```
+## Output
+<img width="702" height="484" alt="image" src="https://github.com/user-attachments/assets/59b7007b-a17e-463e-b526-4e24515582dc" />
+<img width="709" height="490" alt="image" src="https://github.com/user-attachments/assets/ad1b65ce-a3d3-4d2b-a308-09c96164ded3" />
 
-### 2. Sharpening Filters
-i) Using Laplacian Linear Kernal
-```Python
-
-
-
-
-
+### Canny Edge detector output
 ```
-ii) Using Laplacian Operator
-```Python
-
-
-
-
-
+# Step 4: Using Canny operator from cv2, detect the edges of the image
+edges = cv2.Canny(gray_image, 50, 150)  # Canny edge detection with threshold values 50 and 150
+# Canny Edge Detector output
+plt.imshow(edges, cmap='gray')
+plt.title("Canny Edge Detector")
+plt.axis('off')
 ```
+## Output
+<img width="682" height="487" alt="image" src="https://github.com/user-attachments/assets/e368dda7-cc9b-44a2-8009-8c01d7621301" />
 
-## OUTPUT:
-### 1. Smoothing Filters
-</br>
-
-i) Using Averaging Filter
-</br>
-</br>
-</br>
-</br>
-</br>
-
-ii)Using Weighted Averaging Filter
-</br>
-</br>
-</br>
-</br>
-</br>
-
-iii)Using Gaussian Filter
-</br>
-</br>
-</br>
-</br>
-</br>
-
-iv) Using Median Filter
-</br>
-</br>
-</br>
-</br>
-</br>
-
-### 2. Sharpening Filters
-</br>
-
-i) Using Laplacian Kernal
-</br>
-</br>
-</br>
-</br>
-</br>
-
-ii) Using Laplacian Operator
-</br>
-</br>
-</br>
-</br>
-</br>
+### Display the result of Hough transform
+```
+# Step 5: Using the HoughLinesP(), detect line coordinates for every point in the image
+# The parameters of HoughLinesP are: image, resolution, threshold, minLineLength, maxLineGap
+lines = cv2.HoughLinesP(edges, 1, np.pi / 180, 100, minLineLength=50, maxLineGap=10)
+# Step 6: Using a for loop, draw the lines on the original image using the detected coordinates
+# The lines variable contains the endpoints of the detected lines
+for line in lines:
+    x1, y1, x2, y2 = line[0]  # Unpacking the line coordinates
+    cv2.line(image, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Draw green lines with thickness of 2
+# Display the result of Hough Transform (Image with lines)
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Image with lines drawn
+plt.title("Result of Hough Transform")
+plt.axis('off')    
+```
+## Output
+<img width="753" height="488" alt="image" src="https://github.com/user-attachments/assets/27005d10-24be-4251-b2a2-b68181a5f0cc" />
 
 ## Result:
-Thus the filters are designed for smoothing and sharpening the images in the spatial domain.
+
+Thus, the image has been successfully converted.
